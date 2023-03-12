@@ -1,0 +1,73 @@
+{
+  "nodes": {
+    "flake-utils": {
+      "locked": {
+        "lastModified": 1676283394,
+        "narHash": "sha256-XX2f9c3iySLCw54rJ/CZs+ZK6IQy7GXNY4nSOyu2QG4=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "3db36a8b464d0c4532ba1c7dda728f4576d6d073",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "golangci-lint": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1,
+        "narHash": "sha256-Yv/DOTeQ4nudKE2DT2LU8nirRRkbCPGGhAjaGO6Zw4k=",
+        "path": "./golangci-lint",
+        "type": "path"
+      },
+      "original": {
+        "path": "./golangci-lint",
+        "type": "path"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1678594102,
+        "narHash": "sha256-OHAHYiMWJFPNxuW/PcOMlSD2tvXnEYC1jxREBADHwwQ=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "796b4a3c1d903c4b9270cd2548fe46f524eeb886",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "type": "indirect"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1678693419,
+        "narHash": "sha256-bbSv5yqZAW6dz+3f3f3pOUZbxpPN+3OgCljgn7P+nnQ=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "8e3fad82be64c06fbfb9fd43993aec9ef4623936",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "golangci-lint": "golangci-lint",
+        "nixpkgs": "nixpkgs_2"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
