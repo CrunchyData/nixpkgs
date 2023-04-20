@@ -15,10 +15,12 @@
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
-        crystal-packages = import ./crystal { inherit pkgs system; };
+        crystal = import ./crystal { inherit pkgs system; };
       in
       {
-        packages = crystal-packages;
+        packages = crystal.packages;
+        checks = crystal.checks;
+
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [ cachix jq ];
         };

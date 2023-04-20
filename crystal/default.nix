@@ -39,5 +39,14 @@ let
     extraWrapped = pkgs.callPackage ./extra-wrapped.nix { inherit crystal; buildInputs = [ ]; };
     crystal_dev = crystal.override { release = false; };
   };
+
+  simple_check = given_pkg: cmd:
+    pkgs.runCommand "check-${given_pkg.name}" { nativeBuildInputs = pkgs.stdenv.defaultNativeBuildInputs; } "${given_pkg}/bin/${cmd} > $out";
+
+  checks = {
+    crystal = simple_check packages.crystal "crystal eval 'puts true'";
+    crystal_prebuilt = simple_check packages.crystal_prebuilt "crystal eval 'puts true'";
+    shards = simple_check packages.shards "shards --version";
+  };
 in
-if system == "aarch64-linux" then { } else packages
+if system == "aarch64-linux" then { packages = { }; checks = { }; } else { inherit packages checks; }
