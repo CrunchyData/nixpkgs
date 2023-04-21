@@ -8,7 +8,6 @@
 , linkFarm
 , pkg-config
 , removeReferencesTo
-, shards
 , which
 }:
 
@@ -99,7 +98,7 @@ stdenv.mkDerivation (mkDerivationArgs // {
     removeReferencesTo
     pkg-config
     which
-  ] ++ lib.optional (format != "crystal") shards;
+  ];
 
   GIT_SHA = gitSha;
 
