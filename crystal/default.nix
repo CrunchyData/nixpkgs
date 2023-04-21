@@ -1,14 +1,14 @@
 { pkgs, system }:
 let
-  version = "1.8.0";
+  version = "1.8.1";
   src_urls = {
     darwin-universal = {
       url = "https://github.com/crystal-lang/crystal/releases/download/${version}/crystal-${version}-1-darwin-universal.tar.gz";
-      hash = "sha256-CKbciHPOU68bpgMEWhRf7+I/gDxrraorTX4CxmbTQtA=";
+      hash = "sha256-Rnwg6pta+KPDTWFR6ZomNQmwGqeezxEgD3fb/L1KgIQ=";
     };
     linux-x86_64 = {
       url = "https://github.com/crystal-lang/crystal/releases/download/${version}/crystal-${version}-1-linux-x86_64.tar.gz";
-      hash = "sha256-AAsbMB/IH8cGpndYIEwgHLYgwQj6CzLZfrEmXdf5QXc=";
+      hash = "sha256-WRFvvk0vaE81UF95FH63LrZg1UBlOfpqigroiZAe3Gg=";
     };
   };
 
@@ -23,8 +23,8 @@ let
   gh_src = pkgs.fetchFromGitHub {
     owner = "crystal-lang";
     repo = "crystal";
-    rev = version;
-    hash = "sha256-L1SUeuifXBlwyL60an2ndsAuLhZ3RMBKxYrKygzVBI8";
+    rev = "a59a3dbd738269d5aad6051c3834fc70f482f469";
+    hash = "sha256-t+1vM1m62UftCvfa90Dg6nqt6Zseh/GP/Gc1VfOa4+c=";
   };
 
   llvmPackages = pkgs.llvmPackages_15;
