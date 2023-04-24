@@ -38,6 +38,7 @@ let
     };
     crystalWrapped = pkgs.callPackage ./extra-wrapped.nix { inherit crystal; buildInputs = [ ]; };
     crystal_dev = crystal.override { release = false; };
+    crystal2nix = pkgs.crystal2nix.override { inherit crystal; };
   };
 
   simple_check = given_pkg: cmd:
@@ -47,6 +48,7 @@ let
     crystal = simple_check packages.crystal "crystal eval 'puts true'";
     crystal_prebuilt = simple_check packages.crystal_prebuilt "crystal eval 'puts true'";
     shards = simple_check packages.shards "shards --version";
+    crystal2nix = packages.crystal2nix; # -h errors out if there is no shards.nix file, so just use the package itself as a check
   };
 in
 if system == "aarch64-linux" then { packages = { }; checks = { }; } else { inherit packages checks; }
