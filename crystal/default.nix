@@ -36,7 +36,7 @@ let
       inherit crystal_prebuilt shards version llvmPackages;
       src = gh_src;
     };
-    extraWrapped = pkgs.callPackage ./extra-wrapped.nix { inherit crystal; buildInputs = [ ]; };
+    crystalWrapped = pkgs.callPackage ./extra-wrapped.nix { inherit crystal; buildInputs = [ ]; };
     crystal_dev = crystal.override { release = false; };
   };
 
