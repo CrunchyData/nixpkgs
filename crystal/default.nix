@@ -1,4 +1,4 @@
-{ pkgs, system }:
+{ pkgs, system, inputs }:
 let
   version = "1.8.1";
   src_urls = {
@@ -39,6 +39,7 @@ let
     crystalWrapped = pkgs.callPackage ./extra-wrapped.nix { inherit crystal; buildInputs = [ ]; };
     crystal_dev = crystal.override { release = false; };
     crystal2nix = pkgs.crystal2nix.override { inherit crystal; };
+    ameba = pkgs.callPackage ./ameba.nix { inherit crystal; src = inputs.ameba-src; };
   };
 
   simple_check = given_pkg: cmd:
@@ -49,6 +50,7 @@ let
     crystal_prebuilt = simple_check packages.crystal_prebuilt "crystal eval 'puts true'";
     shards = simple_check packages.shards "shards --version";
     crystal2nix = packages.crystal2nix; # -h errors out if there is no shards.nix file, so just use the package itself as a check
+    ameba = simple_check packages.ameba "ameba --help";
   };
 in
 if system == "aarch64-linux" then { packages = { }; checks = { }; } else { inherit packages checks; }

@@ -2,7 +2,7 @@
 let
   fn = { src, self, ... }@args:
     let
-      shardValue = key: builtins.head (builtins.match (".*" + key + ": ([-a-zA-Z0-9\.]+).*") (builtins.readFile (src + /shard.yml)));
+      shardValue = import ./shard-value.nix { inherit src; };
       pkgArgs = {
         pname = shardValue "name";
         version = shardValue "version";

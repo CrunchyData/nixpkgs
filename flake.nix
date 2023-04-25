@@ -9,13 +9,14 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     flake-utils.url = "github:numtide/flake-utils";
+    ameba-src = { url = "github:crystal-ameba/ameba/v1.4.2"; flake = false; };
   };
 
-  outputs = { self, flake-utils, nixpkgs }:
+  outputs = inputs@{ self, flake-utils, nixpkgs, ... }:
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
-        crystal = import ./crystal { inherit pkgs system; };
+        crystal = import ./crystal { inherit pkgs system inputs; };
       in
       {
         packages = crystal.packages;

@@ -1,5 +1,22 @@
 {
   "nodes": {
+    "ameba-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1677051617,
+        "narHash": "sha256-coZU3cufQgSCid10zEvmHG7ddLbZhnrvl9ffw4Y6h74=",
+        "owner": "crystal-ameba",
+        "repo": "ameba",
+        "rev": "6f05df4006e82ba05a55dcfa831f6dbdb3b0191d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "crystal-ameba",
+        "ref": "v1.4.2",
+        "repo": "ameba",
+        "type": "github"
+      }
+    },
     "flake-utils": {
       "inputs": {
         "systems": "systems"
@@ -36,6 +53,7 @@
     },
     "root": {
       "inputs": {
+        "ameba-src": "ameba-src",
         "flake-utils": "flake-utils",
         "nixpkgs": "nixpkgs"
       }
