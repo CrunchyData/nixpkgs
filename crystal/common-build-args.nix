@@ -7,8 +7,8 @@ let
         pname = shardValue "name";
         version = shardValue "version";
         format = "shards";
-        lockFile = src + /shard.lock;
-        shardsFile = src + /shards.nix;
+        lockFile = src + "/shard.lock";
+        shardsFile = src + "/shards.nix";
         gitSha = self.shortRev or "dirty";
       } // args;
     in
