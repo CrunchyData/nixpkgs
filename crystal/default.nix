@@ -20,21 +20,14 @@ let
   arch = archs.${system};
   src = pkgs.fetchurl src_urls.${arch};
 
-  gh_src = pkgs.fetchFromGitHub {
-    owner = "crystal-lang";
-    repo = "crystal";
-    rev = "a59a3dbd738269d5aad6051c3834fc70f482f469";
-    hash = "sha256-t+1vM1m62UftCvfa90Dg6nqt6Zseh/GP/Gc1VfOa4+c=";
-  };
-
   llvmPackages = pkgs.llvmPackages_15;
 
   packages = rec {
     crystal_prebuilt = pkgs.callPackage ./prebuilt.nix { inherit src version llvmPackages; };
     shards = pkgs.callPackage ./shards.nix { crystal = crystal_prebuilt; inherit (pkgs) fetchFromGitHub; };
     crystal = pkgs.callPackage ./crystal.nix {
-      inherit crystal_prebuilt shards version llvmPackages;
-      src = gh_src;
+      inherit crystal_prebuilt shards llvmPackages;
+      src = inputs.crystal-src;
     };
     crystalWrapped = pkgs.callPackage ./extra-wrapped.nix { inherit crystal; buildInputs = [ ]; };
     crystal_dev = crystal.override { release = false; };

@@ -3,7 +3,6 @@
 , src
 , substituteAll
 , callPackage
-, version
   # build deps
 , llvmPackages
 , crystal_prebuilt
@@ -32,8 +31,9 @@
 lib.fix (compiler:
   stdenv.mkDerivation rec {
     pname = "crystal";
-    inherit src version;
+    inherit src;
     inherit (stdenv) isDarwin;
+    version = lib.removeSuffix "\n" (builtins.readFile (src + "/src/VERSION"));
 
     passthru = rec {
       # simple builder that sets a bunch of defaults

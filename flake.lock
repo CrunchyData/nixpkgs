@@ -17,6 +17,23 @@
         "type": "github"
       }
     },
+    "crystal-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1683622346,
+        "narHash": "sha256-YAORdipzpC9CrFgZUFlFfjzlJQ6ZeA2ekVu8IfPOxR8=",
+        "owner": "crystal-lang",
+        "repo": "crystal",
+        "rev": "7aa5cdd86544005a37090f848d1304df1c181fa4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "crystal-lang",
+        "ref": "release/1.8",
+        "repo": "crystal",
+        "type": "github"
+      }
+    },
     "flake-utils": {
       "inputs": {
         "systems": "systems"
@@ -54,6 +71,7 @@
     "root": {
       "inputs": {
         "ameba-src": "ameba-src",
+        "crystal-src": "crystal-src",
         "flake-utils": "flake-utils",
         "nixpkgs": "nixpkgs"
       }
