@@ -23,7 +23,12 @@ let
   llvmPackages = pkgs.llvmPackages_15;
 
   packages = rec {
-    crystal_prebuilt = pkgs.callPackage ./prebuilt.nix { inherit src version llvmPackages; };
+    crystal_prebuilt =
+      if system == "aarch64-linux" then
+        pkgs.callPackage ./from_object_file.nix {} # not really prebuilt until they make official aarch64-linux builds
+      else
+        pkgs.callPackage ./prebuilt.nix { inherit src version llvmPackages; };
+
     shards = pkgs.callPackage ./shards.nix { crystal = crystal_prebuilt; inherit (pkgs) fetchFromGitHub; };
     crystal = pkgs.callPackage ./crystal.nix {
       inherit crystal_prebuilt shards llvmPackages;
@@ -46,4 +51,4 @@ let
     ameba = simple_check packages.ameba "ameba --help";
   };
 in
-if system == "aarch64-linux" then { packages = { }; checks = { }; } else { inherit packages checks; }
+{ inherit packages checks; }
