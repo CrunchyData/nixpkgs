@@ -78,7 +78,7 @@ stdenv.mkDerivation (mkDerivationArgs // {
       ++ lib.optionals (shardsFile != null) [
         "test -e lib || mkdir lib"
         "for d in ${crystalLib}/*; do ln -s $d lib/; done"
-        "cp shard.lock lib/.shards.info"
+        "cp shard.lock lib/.shards.info || true"
       ]
       ++ [ "runHook postConfigure" ]
     );
