@@ -48,7 +48,7 @@ let
     })
     (import shardsFile));
 
-  defaultOptions = [ "--release" "--progress" "--verbose" "--no-debug" ];
+  defaultOptions = [ "--release" "--progress" "--verbose" ];
 
   buildDirectly = shardsFile == null || crystalBinaries != { };
 
@@ -137,6 +137,7 @@ stdenv.mkDerivation (mkDerivationArgs // {
     fi
   '') ++ [
     "remove-references-to -t ${lib.getLib crystal} $out/bin/*"
+    "chmod -x $out/bin/*.dwarf"
     "runHook postInstall"
   ]));
 
@@ -154,7 +155,9 @@ stdenv.mkDerivation (mkDerivationArgs // {
 
   installCheckPhase = args.installCheckPhase or ''
     for f in $out/bin/*; do
-      $f --help > /dev/null
+      if [[ -x $f ]]; then
+        $f --help > /dev/null
+      fi
     done
   '';
 })
