@@ -3,16 +3,16 @@
     "ameba-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1677051617,
-        "narHash": "sha256-coZU3cufQgSCid10zEvmHG7ddLbZhnrvl9ffw4Y6h74=",
+        "lastModified": 1679041484,
+        "narHash": "sha256-pc9mtVR/PBhM5l1PnDkm+y+McxbrfAmQzxmLi761VF4=",
         "owner": "crystal-ameba",
         "repo": "ameba",
-        "rev": "6f05df4006e82ba05a55dcfa831f6dbdb3b0191d",
+        "rev": "7c74d196d6d9a496a81a0c7b79ef44f39faf41b8",
         "type": "github"
       },
       "original": {
         "owner": "crystal-ameba",
-        "ref": "v1.4.2",
+        "ref": "v1.4.3",
         "repo": "ameba",
         "type": "github"
       }
@@ -39,11 +39,11 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1681202837,
-        "narHash": "sha256-H+Rh19JDwRtpVPAWp64F+rlEtxUWBAQW28eAi3SRSzg=",
+        "lastModified": 1689068808,
+        "narHash": "sha256-6ixXo3wt24N/melDWjq70UuHQLxGV8jZvooRanIHXw0=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "cfacdce06f30d2b68473a46042957675eebb3401",
+        "rev": "919d646de7be200f3bf08cb76ae1f09402b6f9b4",
         "type": "github"
       },
       "original": {
@@ -54,11 +54,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1681753173,
-        "narHash": "sha256-MrGmzZWLUqh2VstoikKLFFIELXm/lsf/G9U9zR96VD4=",
+        "lastModified": 1689261696,
+        "narHash": "sha256-LzfUtFs9MQRvIoQ3MfgSuipBVMXslMPH/vZ+nM40LkA=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "0a4206a51b386e5cda731e8ac78d76ad924c7125",
+        "rev": "df1eee2aa65052a18121ed4971081576b25d6b5c",
         "type": "github"
       },
       "original": {
