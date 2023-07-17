@@ -137,7 +137,7 @@ stdenv.mkDerivation (mkDerivationArgs // {
     fi
   '') ++ [
     "remove-references-to -t ${lib.getLib crystal} $out/bin/*"
-    "chmod -x $out/bin/*.dwarf"
+    "chmod -x $out/bin/*.dwarf || true"
     "runHook postInstall"
   ]));
 
