@@ -19,11 +19,11 @@
     "crystal-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1689089481,
-        "narHash": "sha256-FFpAL1U8WtfwDCLaUP+axSnJlGaKp/jzBs54rit9T2A=",
+        "lastModified": 1689604119,
+        "narHash": "sha256-1I8+nZN6NDide89H471gFQ3c85n5VXEl67yd8lgxn4o=",
         "owner": "crystal-lang",
         "repo": "crystal",
-        "rev": "6f97ec71a60742dc2ff61093d2439d587b715d72",
+        "rev": "c355a34e5512807b5dd72d4ad6b1bbc7082526d3",
         "type": "github"
       },
       "original": {
