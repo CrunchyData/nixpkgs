@@ -54,18 +54,11 @@ lib.fix (compiler:
 
     patches = [ (substituteAll { src = ./tzdata.patch; inherit tzdata; }) ];
 
-    postPatch = ''
-      substituteInPlace Makefile \
-        --replace 'CRYSTAL_CONFIG_BUILD_COMMIT :=' 'CRYSTAL_CONFIG_BUILD_COMMIT ?=' \
-        --replace 'SOURCE_DATE_EPOCH :=' 'SOURCE_DATE_EPOCH ?='
-    '';
-
     dontConfigure = true;
 
     LLVM_CONFIG = "${llvmPackages.llvm.dev}/bin/llvm-config";
     CRYSTAL_CONFIG_TARGET = stdenv.targetPlatform.config;
     CRYSTAL_CONFIG_BUILD_COMMIT = (builtins.substring 0 6 src.rev) + lib.optionalString release "-release";
-    SOURCE_DATE_EPOCH = "0";
     preBuild = "export CRYSTAL_CACHE_DIR=$(mktemp -d)";
     buildFlags = [ "interpreter=1" "threads=\${NIX_BUILD_CORES}" ] ++ lib.optionals release [ "release=1" ];
     postBuild = "rm -rf $CRYSTAL_CACHE_DIR";
