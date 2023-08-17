@@ -18,9 +18,16 @@
       let
         pkgs = nixpkgs.legacyPackages.${system};
         crystal = import ./crystal { inherit pkgs system inputs; };
+        go = import ./go { inherit pkgs system inputs; };
+        golangci-lint = import ./golangci-lint { inherit pkgs system inputs; };
       in
       {
-        packages = crystal.packages;
+        packages = nixpkgs.lib.attrsets.mergeAttrsList [
+          crystal.packages
+          go.packages
+          golangci-lint.packages
+        ];
+
         checks = crystal.checks;
 
         devShells.default = pkgs.mkShell {
