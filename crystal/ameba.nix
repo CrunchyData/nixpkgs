@@ -1,11 +1,10 @@
 { crystal, src }:
 let
-  shardValue = import ./shard-value.nix { inherit src; };
+  parsedShard = (import ./lib.nix).parseShard src;
 in
 crystal.buildCrystalPackage {
   inherit src;
-  pname = "ameba";
-  version = shardValue "version";
+  inherit (parsedShard) pname version;
   doCheck = false;
   format = "crystal";
   crystalBinaries.ameba = {

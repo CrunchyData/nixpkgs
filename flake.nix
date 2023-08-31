@@ -14,7 +14,9 @@
   };
 
   outputs = inputs@{ self, flake-utils, nixpkgs, ... }:
-    flake-utils.lib.eachDefaultSystem (system:
+    {
+      lib.crystal = import ./crystal/lib.nix;
+    } // flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
         crystal = import ./crystal { inherit pkgs system inputs; };

@@ -1,15 +1,15 @@
 { buildCrystalPackage }:
 let
-  fn = { src, self, ... }@args:
+  fn = { src, ... }@args:
     let
-      shardValue = import ./shard-value.nix { inherit src; };
+      lib = import ./lib.nix;
+      parsedShard = lib.parseShard src;
       pkgArgs = {
-        pname = shardValue "name";
-        version = shardValue "version";
+        inherit (parsedShard) pname version;
         format = "shards";
         lockFile = src + "/shard.lock";
         shardsFile = src + "/shards.nix";
-        gitSha = self.shortRev or "dirty";
+        gitSha = args.self.shortRev or "dirty";
       } // args;
     in
     buildCrystalPackage pkgArgs;
