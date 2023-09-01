@@ -37,9 +37,10 @@ lib.fix (compiler:
     version = lib.removeSuffix "\n" (builtins.readFile (src + "/src/VERSION"));
 
     passthru = rec {
-      # simple builder that sets a bunch of defaults
+      # simple builders that set a bunch of defaults
       mkPkg = callPackage ./common-build-args.nix { inherit buildCrystalPackage; };
-      # base builder
+      mkStaticPkg = callPackage ./common-build-args.nix { buildCrystalPackage = buildStaticCrystalPackage; };
+      # base builders
       buildCrystalPackage = callPackage ./build-crystal-package.nix { crystal = compiler; };
       buildStaticCrystalPackage = callPackage ./build-crystal-package.nix { crystal = compiler; stdenv = pkgsStatic.stdenv; };
     };
