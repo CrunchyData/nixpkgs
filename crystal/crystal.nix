@@ -3,6 +3,7 @@
 , src
 , substituteAll
 , callPackage
+, pkgsStatic
   # build deps
 , llvmPackages
 , crystal_prebuilt
@@ -30,16 +31,18 @@
 }:
 lib.fix (compiler:
   stdenv.mkDerivation rec {
-    pname = "crystal";
+    pname = "crystal-base";
     inherit src;
     inherit (stdenv) isDarwin;
     version = lib.removeSuffix "\n" (builtins.readFile (src + "/src/VERSION"));
 
     passthru = rec {
-      # simple builder that sets a bunch of defaults
+      # simple builders that set a bunch of defaults
       mkPkg = callPackage ./common-build-args.nix { inherit buildCrystalPackage; };
-      # base builder
+      mkStaticPkg = callPackage ./common-build-args.nix { buildCrystalPackage = buildStaticCrystalPackage; };
+      # base builders
       buildCrystalPackage = callPackage ./build-crystal-package.nix { crystal = compiler; };
+      buildStaticCrystalPackage = callPackage ./build-crystal-package.nix { crystal = compiler; stdenv = pkgsStatic.stdenv; };
     };
 
     disallowedReferences = [ crystal_prebuilt ];
@@ -63,18 +66,18 @@ lib.fix (compiler:
     buildFlags = [ "interpreter=1" "threads=\${NIX_BUILD_CORES}" ] ++ lib.optionals release [ "release=1" ];
     postBuild = "rm -rf $CRYSTAL_CACHE_DIR";
 
+         #--suffix CRYSTAL_LIBRARY_PATH : ${ lib.makeLibraryPath (buildInputs) } \
+         #--suffix PKG_CONFIG_PATH : ${openssl.dev}/lib/pkgconfig \
     installPhase = ''
       runHook preInstall
 
       install -Dm755 ${shards}/bin/shards $bin/bin/shards
       install -Dm755 .build/crystal $bin/bin/crystal
+      chmod +x $bin/bin/crystal
       wrapProgram $bin/bin/crystal \
          --prefix PATH : ${lib.makeBinPath [ llvmPackages.clang ] } \
          --suffix PATH : ${lib.makeBinPath [ pkg-config which ]} \
          --suffix CRYSTAL_PATH : lib:$lib/crystal \
-         --suffix CRYSTAL_LIBRARY_PATH : ${ lib.makeLibraryPath (buildInputs) } \
-         --suffix PKG_CONFIG_PATH : ${openssl.dev}/lib/pkgconfig \
-         --suffix CRYSTAL_OPTS : "-Duse_pcre2" \
 
       install -dm755 $lib/crystal
       cp -r src/* $lib/crystal/
