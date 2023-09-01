@@ -3,6 +3,7 @@
 , src
 , substituteAll
 , callPackage
+, pkgsStatic
   # build deps
 , llvmPackages
 , crystal_prebuilt
@@ -40,6 +41,7 @@ lib.fix (compiler:
       mkPkg = callPackage ./common-build-args.nix { inherit buildCrystalPackage; };
       # base builder
       buildCrystalPackage = callPackage ./build-crystal-package.nix { crystal = compiler; };
+      buildStaticCrystalPackage = callPackage ./build-crystal-package.nix { crystal = compiler; stdenv = pkgsStatic.stdenv; };
     };
 
     disallowedReferences = [ crystal_prebuilt ];
