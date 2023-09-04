@@ -31,7 +31,7 @@
 }:
 lib.fix (compiler:
   stdenv.mkDerivation rec {
-    pname = "crystal";
+    pname = "crystal-base";
     inherit src;
     inherit (stdenv) isDarwin;
     version = lib.removeSuffix "\n" (builtins.readFile (src + "/src/VERSION"));
@@ -66,18 +66,18 @@ lib.fix (compiler:
     buildFlags = [ "interpreter=1" "threads=\${NIX_BUILD_CORES}" ] ++ lib.optionals release [ "release=1" ];
     postBuild = "rm -rf $CRYSTAL_CACHE_DIR";
 
+         #--suffix CRYSTAL_LIBRARY_PATH : ${ lib.makeLibraryPath (buildInputs) } \
+         #--suffix PKG_CONFIG_PATH : ${openssl.dev}/lib/pkgconfig \
     installPhase = ''
       runHook preInstall
 
       install -Dm755 ${shards}/bin/shards $bin/bin/shards
       install -Dm755 .build/crystal $bin/bin/crystal
+      chmod +x $bin/bin/crystal
       wrapProgram $bin/bin/crystal \
          --prefix PATH : ${lib.makeBinPath [ llvmPackages.clang ] } \
          --suffix PATH : ${lib.makeBinPath [ pkg-config which ]} \
          --suffix CRYSTAL_PATH : lib:$lib/crystal \
-         --suffix CRYSTAL_LIBRARY_PATH : ${ lib.makeLibraryPath (buildInputs) } \
-         --suffix PKG_CONFIG_PATH : ${openssl.dev}/lib/pkgconfig \
-         --suffix CRYSTAL_OPTS : "-Duse_pcre2" \
 
       install -dm755 $lib/crystal
       cp -r src/* $lib/crystal/

@@ -29,13 +29,21 @@ let
       else
         pkgs.callPackage ./prebuilt.nix { inherit src version llvmPackages; };
 
-    shards = pkgs.callPackage ./shards.nix { crystal = crystal_prebuilt; inherit (pkgs) fetchFromGitHub; };
-    crystal = pkgs.callPackage ./crystal.nix {
+    base = pkgs.callPackage ./crystal.nix {
       inherit crystal_prebuilt shards llvmPackages;
       src = inputs.crystal-src;
     };
+    base_dev = base.override { release = false; };
+
+    crystal = pkgs.callPackage ./crystalWrapped.nix { crystal = base; };
+    crystal_dev = pkgs.callPackage ./crystalWrapped.nix { crystal = base_dev; };
+    crystalStatic = pkgs.pkgsStatic.callPackage ./crystalWrapped.nix { crystal = base; };
+    crystalStatic_dev = pkgs.pkgsStatic.callPackage ./crystalWrapped.nix { crystal = base_dev; };
+
+    # deprecate
     crystalWrapped = pkgs.callPackage ./extra-wrapped.nix { inherit crystal; buildInputs = [ ]; };
-    crystal_dev = crystal.override { release = false; };
+
+    shards = pkgs.callPackage ./shards.nix { crystal = crystal_prebuilt; inherit (pkgs) fetchFromGitHub; };
     crystal2nix = pkgs.crystal2nix.override { inherit crystal; };
     ameba = pkgs.callPackage ./ameba.nix { inherit crystal; src = inputs.ameba-src; };
   };
