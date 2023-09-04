@@ -1,6 +1,6 @@
 { lib
 , callPackage
-, makeWrapper
+, makeBinaryWrapper
 , stdenv
 , extraBuildInputs ? []
   # crystal common deps
@@ -13,9 +13,7 @@
 , libyaml
 , openssl
 , pcre2
-, pkg-config
 , zlib
-, which
   # expected overrides
 , crystal
 }:
@@ -37,7 +35,7 @@ lib.fix (compiler:
     dontBuild = true;
     dontStrip = true;
 
-    nativeBuildInputs = [ makeWrapper ];
+    nativeBuildInputs = [ makeBinaryWrapper ];
 
     buildInputs = [ boehmgc gmp libevent libffi libxml2 libyaml openssl pcre2 zlib ]
       ++ extraBuildInputs
