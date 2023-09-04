@@ -10,7 +10,7 @@
 , tzdata
   # install deps
 , installShellFiles
-, makeWrapper
+, makeBinaryWrapper
 , which
   # crystal common deps
 , boehmgc
@@ -50,7 +50,7 @@ lib.fix (compiler:
     outputs = [ "out" "lib" "bin" ];
     strictDeps = true;
 
-    nativeBuildInputs = [ makeWrapper installShellFiles crystal_prebuilt ];
+    nativeBuildInputs = [ makeBinaryWrapper installShellFiles crystal_prebuilt ];
 
     buildInputs = [ boehmgc gmp libevent libffi libxml2 libyaml openssl pcre2 zlib ]
       ++ lib.optionals isDarwin [ libiconv ];
@@ -66,8 +66,6 @@ lib.fix (compiler:
     buildFlags = [ "interpreter=1" "threads=\${NIX_BUILD_CORES}" ] ++ lib.optionals release [ "release=1" ];
     postBuild = "rm -rf $CRYSTAL_CACHE_DIR";
 
-         #--suffix CRYSTAL_LIBRARY_PATH : ${ lib.makeLibraryPath (buildInputs) } \
-         #--suffix PKG_CONFIG_PATH : ${openssl.dev}/lib/pkgconfig \
     installPhase = ''
       runHook preInstall
 
