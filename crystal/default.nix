@@ -1,14 +1,14 @@
 { pkgs, system, inputs }:
 let
-  version = "1.8.1";
+  version = "1.11.2";
   src_urls = {
     darwin-universal = {
       url = "https://github.com/crystal-lang/crystal/releases/download/${version}/crystal-${version}-1-darwin-universal.tar.gz";
-      hash = "sha256-Rnwg6pta+KPDTWFR6ZomNQmwGqeezxEgD3fb/L1KgIQ=";
+      hash = "sha256-ejbozz2CZO9s0XVu5XY0N0qLOc2IMYlv3qAIjgR4tOQ=";
     };
     linux-x86_64 = {
       url = "https://github.com/crystal-lang/crystal/releases/download/${version}/crystal-${version}-1-linux-x86_64.tar.gz";
-      hash = "sha256-WRFvvk0vaE81UF95FH63LrZg1UBlOfpqigroiZAe3Gg=";
+      hash = "sha256-cy7qnfZFjIkVfa6UX7CtvuC+tjRcoDvDzNKZsr8Iea4=";
     };
   };
 
@@ -20,7 +20,7 @@ let
   arch = archs.${system};
   src = pkgs.fetchurl src_urls.${arch};
 
-  llvmPackages = pkgs.llvmPackages_15;
+  llvmPackages = pkgs.llvmPackages_17;
 
   packages = rec {
     crystal_prebuilt =
