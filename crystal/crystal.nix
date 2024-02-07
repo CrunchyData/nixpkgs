@@ -39,10 +39,10 @@ lib.fix (compiler:
     passthru = rec {
       # simple builders that set a bunch of defaults
       mkPkg = callPackage ./common-build-args.nix { inherit buildCrystalPackage; };
-      mkStaticPkg = callPackage ./common-build-args.nix { buildCrystalPackage = buildStaticCrystalPackage; };
+      #mkStaticPkg = callPackage ./common-build-args.nix { buildCrystalPackage = buildStaticCrystalPackage; };
       # base builders
       buildCrystalPackage = callPackage ./build-crystal-package.nix { crystal = compiler; };
-      buildStaticCrystalPackage = callPackage ./build-crystal-package.nix { crystal = compiler; stdenv = pkgsStatic.stdenv; };
+      #buildStaticCrystalPackage = callPackage ./build-crystal-package.nix { crystal = compiler; stdenv = pkgsStatic.stdenv; };
     };
 
     disallowedReferences = [ crystal_prebuilt ];

@@ -37,8 +37,8 @@ let
 
     crystal = pkgs.callPackage ./crystalWrapped.nix { crystal = base; };
     crystal_dev = pkgs.callPackage ./crystalWrapped.nix { crystal = base_dev; };
-    crystalStatic = pkgs.pkgsStatic.callPackage ./crystalWrapped.nix { crystal = base; };
-    crystalStatic_dev = pkgs.pkgsStatic.callPackage ./crystalWrapped.nix { crystal = base_dev; };
+    #crystalStatic = pkgs.pkgsStatic.callPackage ./crystalWrapped.nix { crystal = base; };
+    #crystalStatic_dev = pkgs.pkgsStatic.callPackage ./crystalWrapped.nix { crystal = base_dev; };
 
     shards = pkgs.callPackage ./shards.nix { crystal = crystal_prebuilt; inherit (pkgs) fetchFromGitHub; };
     crystal2nix = pkgs.crystal2nix.override { inherit crystal; };
@@ -50,7 +50,7 @@ let
 
   checks = {
     crystal = simple_check packages.crystal "crystal eval 'puts true'";
-    crystalStatic = simple_check packages.crystalStatic "crystal eval 'puts true'";
+    #crystalStatic = simple_check packages.crystalStatic "crystal eval 'puts true'";
     crystal_prebuilt = simple_check packages.crystal_prebuilt "crystal eval 'puts true'";
     shards = simple_check packages.shards "shards --version";
     crystal2nix = packages.crystal2nix; # -h errors out if there is no shards.nix file, so just use the package itself as a check
