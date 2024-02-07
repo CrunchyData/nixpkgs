@@ -9,7 +9,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     flake-utils.url = "github:numtide/flake-utils";
-    crystal-src = { url = "github:crystal-lang/crystal/release/1.10"; flake = false; };
+    crystal-src = { url = "github:crystal-lang/crystal/release/1.11"; flake = false; };
     ameba-src = { url = "github:crystal-ameba/ameba"; flake = false; };
   };
 
