@@ -37,24 +37,32 @@ let
 
     crystal = pkgs.callPackage ./crystalWrapped.nix { crystal = base; };
     crystal_dev = pkgs.callPackage ./crystalWrapped.nix { crystal = base_dev; };
-    #crystalStatic = pkgs.pkgsStatic.callPackage ./crystalWrapped.nix { crystal = base; };
-    #crystalStatic_dev = pkgs.pkgsStatic.callPackage ./crystalWrapped.nix { crystal = base_dev; };
+    crystalStatic = pkgs.pkgsStatic.callPackage ./crystalWrapped.nix { crystal = base; };
+    crystalStatic_dev = pkgs.pkgsStatic.callPackage ./crystalWrapped.nix { crystal = base_dev; };
 
     shards = pkgs.callPackage ./shards.nix { crystal = crystal_prebuilt; inherit (pkgs) fetchFromGitHub; };
     crystal2nix = pkgs.crystal2nix.override { inherit crystal; };
     ameba = pkgs.callPackage ./ameba.nix { inherit crystal; src = inputs.ameba-src; };
   };
 
-  simple_check = given_pkg: cmd:
-    pkgs.runCommand "check-${given_pkg.name}" { nativeBuildInputs = pkgs.stdenv.defaultNativeBuildInputs; } "${given_pkg}/bin/${cmd} > $out";
+  eval_check = given_pkg: cmd:
+    pkgs.runCommand "check-${given_pkg.name}"
+    { nativeBuildInputs = pkgs.stdenv.defaultNativeBuildInputs; }
+    "${given_pkg}/bin/${cmd} > $out";
+
+  static_build_check = given_pkg:
+    pkgs.runCommand
+      "check-${given_pkg.name}"
+      { nativeBuildInputs = pkgs.pkgsStatic.stdenv.defaultNativeBuildInputs; }
+      "echo puts true > check.cr && ${given_pkg}/bin/crystal build --static check.cr > $out && ./check";
 
   checks = {
-    crystal = simple_check packages.crystal "crystal eval 'puts true'";
-    #crystalStatic = simple_check packages.crystalStatic "crystal eval 'puts true'";
-    crystal_prebuilt = simple_check packages.crystal_prebuilt "crystal eval 'puts true'";
-    shards = simple_check packages.shards "shards --version";
+    crystal = eval_check packages.crystal "crystal eval 'puts true'";
+    crystalStatic = static_build_check packages.crystalStatic;
+    crystal_prebuilt = eval_check packages.crystal_prebuilt "crystal eval 'puts true'";
+    shards = eval_check packages.shards "shards --version";
     crystal2nix = packages.crystal2nix; # -h errors out if there is no shards.nix file, so just use the package itself as a check
-    ameba = simple_check packages.ameba "ameba --help";
+    ameba = eval_check packages.ameba "ameba --help";
   };
 in
 { inherit packages checks; }
