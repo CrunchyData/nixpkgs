@@ -23,7 +23,7 @@ stdenv.mkDerivation rec {
 
   src = fetchurl {
     url = "https://github.com/crystal-lang/crystal/archive/refs/tags/${version}.tar.gz";
-    hash = "sha256-bnIuMjmoxGe6QqiDiRZ4ikeVsM6qLR4umGFs7etUBgU=";
+    hash = "sha256-l0Dw9SdF05lEmxGmSwYCFshZnvc3EmFf6JVqHo98XZw=";
   };
 
   # build with
