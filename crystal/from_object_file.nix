@@ -26,11 +26,12 @@ stdenv.mkDerivation rec {
     hash = "sha256-l0Dw9SdF05lEmxGmSwYCFshZnvc3EmFf6JVqHo98XZw=";
   };
 
-  # build with
+  # In the crystal source directory, build with:
+  #
   # LLVM_CONFIG=/nix/store/dar7mwpqglsa91qdh2m4is8yhcxmwfrc-llvm-17.0.6-dev/bin/llvm-config make crystal -j8 target="aarch64-linux-gnu" release=true
   crystal_o = fetchurl {
-    url = "https://github.com/CrunchyData/nixpkgs/releases/download/crystal-cross%2Faarch64-linux%2F1.8.2/crystal-1.8.2-aarch64-linux.tar.gz";
-    hash = "sha256-s49D0Z8KDaGXOADptdGx9/hQNyFSLdNc4UhxTtiHGKc=";
+    url = "https://github.com/CrunchyData/nixpkgs/releases/download/crystal-cross%2Faarch64-linux%2F1.10.1/crystal-1.10.1-aarch64-linux.tar.gz";
+    hash = "sha256-9Gf2OA7JbwLb7rYznLUDcgldqBqV8xgG0xAUVNiBL+A=";
   };
 
 
