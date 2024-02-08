@@ -30,8 +30,8 @@ stdenv.mkDerivation rec {
   #
   # LLVM_CONFIG=/nix/store/dar7mwpqglsa91qdh2m4is8yhcxmwfrc-llvm-17.0.6-dev/bin/llvm-config make crystal -j8 target="aarch64-linux-gnu" release=true
   crystal_o = fetchurl {
-    url = "https://github.com/CrunchyData/nixpkgs/releases/download/crystal-cross%2Faarch64-linux%2F1.11.0/crystal-1.11.0-aarch64-linux.tar.gz";
-    hash = "sha256-UzCSIs5qN10arMDgGr81Bh2LIbaouPEYGFSJvSQbhsI=";
+    url = "https://github.com/CrunchyData/nixpkgs/releases/download/crystal-cross%2Faarch64-linux%2F1.11.1/crystal-1.11.1-aarch64-linux.tar.gz";
+    hash = "sha256-i9UsVNu8jHNfLODpDW2KPywUf5hZ6ru1NN09AQayWlY=";
   };
 
   nativeBuildInputs = [ makeWrapper installShellFiles ];
