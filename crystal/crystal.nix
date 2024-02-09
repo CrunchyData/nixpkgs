@@ -53,7 +53,7 @@ lib.fix (compiler:
     nativeBuildInputs = [ makeBinaryWrapper installShellFiles crystal_prebuilt ];
 
     buildInputs = [ boehmgc gmp libevent libffi libxml2 libyaml openssl pcre2 zlib ]
-      ++ lib.optionals isDarwin [ libiconv ];
+      ++ lib.optionals isDarwin [ libiconv llvmPackages.libcxxabi ];
 
     patches = [ (substituteAll { src = ./tzdata.patch; inherit tzdata; }) ];
 
