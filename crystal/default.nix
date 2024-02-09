@@ -20,7 +20,7 @@ let
   arch = archs.${system};
   src = pkgs.fetchurl src_urls.${arch};
 
-  llvmPackages = pkgs.llvmPackages_11;
+  llvmPackages = pkgs.llvmPackages_9;
 
   packages = rec {
     crystal_prebuilt =
