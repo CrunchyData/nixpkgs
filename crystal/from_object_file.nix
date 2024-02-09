@@ -6,8 +6,8 @@
 , makeWrapper
 , fetchurl
   # crystal deps
-, clang_17
-, llvm_17
+, clang_9
+, llvm_9
 , boehmgc
 , gmp
 , libevent
@@ -36,7 +36,7 @@ stdenv.mkDerivation rec {
 
   nativeBuildInputs = [ makeWrapper installShellFiles ];
   buildInputs = [
-    llvm_17
+    llvm_9
     boehmgc
     gmp
     libevent
@@ -50,7 +50,7 @@ stdenv.mkDerivation rec {
   buildPhase = ''
     tar xvf ${crystal_o}
     tar xvf ${src}
-    cc crystal.o -o crystal crystal-${version}/src/llvm/ext/llvm_ext.cc -lLLVM-17 -lstdc++ -lpcre2-8 -lm -lgc -lpthread -levent -lrt -lpthread -ldl
+    cc crystal.o -o crystal crystal-${version}/src/llvm/ext/llvm_ext.cc -lLLVM-16 -lstdc++ -lpcre2-8 -lm -lgc -lpthread -levent -lrt -lpthread -ldl
   '';
 
   enableParallelBuilding = true;
@@ -61,7 +61,7 @@ stdenv.mkDerivation rec {
     install -Dm755 crystal $bin/bin/crystal
 
     wrapProgram $bin/bin/crystal \
-   --prefix PATH : ${lib.makeBinPath [ clang_17 ] } \
+   --prefix PATH : ${lib.makeBinPath [ clang_9 ] } \
    --suffix PATH : ${lib.makeBinPath [ pkg-config which ]} \
    --suffix CRYSTAL_PATH : lib:$lib/crystal \
    --suffix CRYSTAL_LIBRARY_PATH : ${ lib.makeLibraryPath (buildInputs) } \

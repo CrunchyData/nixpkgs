@@ -39,10 +39,10 @@ lib.fix (compiler:
     passthru = rec {
       # simple builders that set a bunch of defaults
       mkPkg = callPackage ./common-build-args.nix { inherit buildCrystalPackage; };
-      #mkStaticPkg = callPackage ./common-build-args.nix { buildCrystalPackage = buildStaticCrystalPackage; };
+      mkStaticPkg = callPackage ./common-build-args.nix { buildCrystalPackage = buildStaticCrystalPackage; };
       # base builders
       buildCrystalPackage = callPackage ./build-crystal-package.nix { crystal = compiler; };
-      #buildStaticCrystalPackage = callPackage ./build-crystal-package.nix { crystal = compiler; stdenv = pkgsStatic.stdenv; };
+      buildStaticCrystalPackage = callPackage ./build-crystal-package.nix { crystal = compiler; stdenv = pkgsStatic.stdenv; };
     };
 
     disallowedReferences = [ crystal_prebuilt ];
@@ -53,7 +53,7 @@ lib.fix (compiler:
     nativeBuildInputs = [ makeBinaryWrapper installShellFiles crystal_prebuilt ];
 
     buildInputs = [ boehmgc gmp libevent libffi libxml2 libyaml openssl pcre2 zlib ]
-      ++ lib.optionals isDarwin [ libiconv ];
+      ++ lib.optionals isDarwin [ libiconv llvmPackages.libcxxabi ];
 
     patches = [ (substituteAll { src = ./tzdata.patch; inherit tzdata; }) ];
 
