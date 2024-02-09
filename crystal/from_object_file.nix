@@ -6,8 +6,8 @@
 , makeWrapper
 , fetchurl
   # crystal deps
-, clang_13
-, llvm_13
+, clang_12
+, llvm_12
 , boehmgc
 , gmp
 , libevent
@@ -36,7 +36,7 @@ stdenv.mkDerivation rec {
 
   nativeBuildInputs = [ makeWrapper installShellFiles ];
   buildInputs = [
-    llvm_13
+    llvm_12
     boehmgc
     gmp
     libevent
@@ -61,7 +61,7 @@ stdenv.mkDerivation rec {
     install -Dm755 crystal $bin/bin/crystal
 
     wrapProgram $bin/bin/crystal \
-   --prefix PATH : ${lib.makeBinPath [ clang_13 ] } \
+   --prefix PATH : ${lib.makeBinPath [ clang_12 ] } \
    --suffix PATH : ${lib.makeBinPath [ pkg-config which ]} \
    --suffix CRYSTAL_PATH : lib:$lib/crystal \
    --suffix CRYSTAL_LIBRARY_PATH : ${ lib.makeLibraryPath (buildInputs) } \
