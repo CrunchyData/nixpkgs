@@ -3,11 +3,11 @@
     "ameba-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1705948221,
-        "narHash": "sha256-ThBiU9/QSkBcS6dZBIW9zL0HMqO30bzqnreGloQ7qos=",
+        "lastModified": 1710028272,
+        "narHash": "sha256-deUkmObf4ih3RlyQl0AL+ozSPlhD7GjTE6sYS27dPkQ=",
         "owner": "crystal-ameba",
         "repo": "ameba",
-        "rev": "63be60ce96543e8dd91fcbe100d4a299f8f16870",
+        "rev": "107c6e0ea635b827ea7ee5d7bd748fc6d8ee947c",
         "type": "github"
       },
       "original": {
@@ -38,11 +38,11 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1705309234,
-        "narHash": "sha256-uNRRNRKmJyCRC/8y1RqBkqWBLM034y4qN7EprSdmgyA=",
+        "lastModified": 1710146030,
+        "narHash": "sha256-SZ5L6eA7HJ/nmkzGG7/ISclqe6oZdOZTNoesiInkXPQ=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "1ef2e671c3b0c19053962c07dbda38332dcebf26",
+        "rev": "b1d9ab70662946ef0850d488da1c9019f3a9752a",
         "type": "github"
       },
       "original": {
@@ -51,13 +51,29 @@
         "type": "github"
       }
     },
-    "nixpkgs": {
+    "lastGoodStaticBoehmgc": {
       "locked": {
-        "lastModified": 1707205916,
-        "narHash": "sha256-fmRJilYGlB7VCt3XsdYxrA0u8e/K84O5xYucerUY0iM=",
+        "lastModified": 1710266477,
+        "narHash": "sha256-oChjOWfSxtY5508wFhQQ/MS092+Xxzfj9vnv53VNHCE=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "8cc79aa39bbc6eaedaf286ae655b224c71e02907",
+        "rev": "14feac318eefa31d936d9b6a2aacb1928899abfe",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "14feac318eefa31d936d9b6a2aacb1928899abfe",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1711370797,
+        "narHash": "sha256-2xu0jVSjuKhN97dqc4bVtvEH52Rwh6+uyI1XCnzoUyI=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "c726225724e681b3626acc941c6f95d2b0602087",
         "type": "github"
       },
       "original": {
@@ -72,6 +88,7 @@
         "ameba-src": "ameba-src",
         "crystal-src": "crystal-src",
         "flake-utils": "flake-utils",
+        "lastGoodStaticBoehmgc": "lastGoodStaticBoehmgc",
         "nixpkgs": "nixpkgs"
       }
     },
