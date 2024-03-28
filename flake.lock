@@ -1,38 +1,5 @@
 {
   "nodes": {
-    "ameba-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1710028272,
-        "narHash": "sha256-deUkmObf4ih3RlyQl0AL+ozSPlhD7GjTE6sYS27dPkQ=",
-        "owner": "crystal-ameba",
-        "repo": "ameba",
-        "rev": "107c6e0ea635b827ea7ee5d7bd748fc6d8ee947c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "crystal-ameba",
-        "repo": "ameba",
-        "type": "github"
-      }
-    },
-    "crystal-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1705584971,
-        "narHash": "sha256-BBEDWqFtmFUNj0kuGBzv71YHO3KjxV4d2ySTCD4HhLc=",
-        "owner": "crystal-lang",
-        "repo": "crystal",
-        "rev": "fda656c7134138e013e89281e74a4f3761b53fd7",
-        "type": "github"
-      },
-      "original": {
-        "owner": "crystal-lang",
-        "ref": "release/1.11",
-        "repo": "crystal",
-        "type": "github"
-      }
-    },
     "flake-utils": {
       "inputs": {
         "systems": "systems"
@@ -85,8 +52,6 @@
     },
     "root": {
       "inputs": {
-        "ameba-src": "ameba-src",
-        "crystal-src": "crystal-src",
         "flake-utils": "flake-utils",
         "lastGoodStaticBoehmgc": "lastGoodStaticBoehmgc",
         "nixpkgs": "nixpkgs"

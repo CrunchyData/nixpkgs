@@ -10,8 +10,6 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     lastGoodStaticBoehmgc.url = "github:NixOS/nixpkgs/14feac318eefa31d936d9b6a2aacb1928899abfe";
     flake-utils.url = "github:numtide/flake-utils";
-    crystal-src = { url = "github:crystal-lang/crystal/release/1.11"; flake = false; };
-    ameba-src = { url = "github:crystal-ameba/ameba"; flake = false; };
   };
 
   outputs = inputs@{ self, flake-utils, nixpkgs, lastGoodStaticBoehmgc, ... }:
