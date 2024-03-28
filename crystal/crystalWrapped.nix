@@ -16,6 +16,8 @@
 , zlib
   # expected overrides
 , crystal
+  # other binaries to include
+, shards
 }:
 lib.fix (compiler:
   stdenv.mkDerivation rec {
@@ -46,7 +48,7 @@ lib.fix (compiler:
 
       mkdir -p $out/bin
       ln -s ${crystal}/bin/crystal $out/bin/
-      ln -s ${crystal}/bin/shards $out/bin/
+      ln -s ${shards}/bin/shards $out/bin/
 
       wrapProgram $out/bin/crystal \
          --suffix CRYSTAL_PATH : lib:$lib/crystal \
