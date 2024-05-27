@@ -14,7 +14,7 @@ jobs:
     steps:
       - name: Install Nix
         uses: cachix/install-nix-action@v25
-      - uses: cachix/cachix-action@v14
+      - uses: cachix/cachix-action@v15
         with:
           name: crunchy-public
           authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
