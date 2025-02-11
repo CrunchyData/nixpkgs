@@ -13,7 +13,7 @@ let
   packages = rec {
     inherit (pkgs) shards crystal2nix ameba;
 
-    base = pkgs.crystal;
+    base = pkgs.crystal_1_14;
 
     crystal = pkgs.callPackage ./crystalWrapped.nix { crystal = base; };
     ${crystalStatic} = pkgs.pkgsStatic.callPackage ./crystalWrapped.nix { crystal = base; boehmgc = staticBoehmgc; };
